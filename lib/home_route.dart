@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -12,7 +14,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                  MaterialPageRoute(builder: (context) => PickPhoto()),
                 );
               },
             ),
@@ -43,32 +45,45 @@ class Home extends StatelessWidget {
     );
   }
 }
-class SecondRoute extends StatelessWidget {
+
+class PickPhoto extends StatefulWidget {
+  @override
+  _PickPhotoState createState() => _PickPhotoState();
+}
+
+class _PickPhotoState extends State<PickPhoto> {
+  File _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("投稿画面"),
+        title: Text('投稿画面'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Image.asset(
-              'images/noteImage.jpg',
-            ),
-            FlatButton(
-              onPressed: (){
-                //TODO Upload image from library
-
-              },
-              child: Icon(
-                  Icons.photo_camera
-              ),
-            ),
+            _image == null
+                ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 100.0, horizontal: 50.0),
+                  child: Text('写真を選択してください'),
+                )
+                : Image.file(_image),
             Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
               child: TextField(
-                enabled: true,
+                decoration: InputDecoration(
+                  labelText: "概要など",
+                ),
               ),
             ),
             RaisedButton(
@@ -81,27 +96,15 @@ class SecondRoute extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-class ThirdRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Third Route"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go second'),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        tooltip: 'Pick Image',
+        child: Icon(Icons.add_a_photo),
       ),
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
 
   @override
@@ -138,6 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             })));
   }
 }
+
 class MyHomePageDetail extends StatefulWidget {
   MyHomePageDetail(this._imageName);
   final String _imageName;

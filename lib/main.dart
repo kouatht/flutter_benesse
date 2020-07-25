@@ -27,18 +27,18 @@ class _RootWidgetState extends State<RootWidget> {
   final _bottomNavigationBarItems = <BottomNavigationBarItem>[];
   static const _footerIcons = [
     Icons.access_time,
-    Icons.star,
+//    Icons.star,
     Icons.home,
   ];
   static const _footerItemNames = [
     'タイムライン',
-    'ToDoリスト',
+//    'ToDoリスト',
     'アカウント',
   ];
   // === 追加部分 ===
   var _routes = [
     Home(),
-    ToDo(),
+//    ToDo(),
     TimeLine(),
     //settings(),
   ];

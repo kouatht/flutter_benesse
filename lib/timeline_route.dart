@@ -7,7 +7,7 @@ class TimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("タイムライン"),
+        title: Text("ホーム"),
         backgroundColor: Colors.blue,// <- (※2)
       ),
       body: Center(child: Text("${x}") // <- (※3)

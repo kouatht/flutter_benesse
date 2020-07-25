@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Route'),
+        title: Text('タイムライン'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle_outline, color: Colors.white,),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Open route'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
-            );
-          },
-        ),
+        child: Text('右上のプラスボタンから追加'),
       ),
     );
   }
@@ -26,7 +28,7 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("投稿画面"),
       ),
       body: Center(
         child: RaisedButton(
@@ -36,7 +38,7 @@ class SecondRoute extends StatelessWidget {
               MaterialPageRoute(builder: (context) => ThirdRoute()),
             );
           },
-          child: Text('Go third'),
+          child: Text('次の画面'),
         ),
       ),
     );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'timeline_route.dart';
 import 'home_route.dart';
-import 'target_route.dart';
 import 'ToDo_route.dart';
-
 void main() => runApp(App());
 class App extends StatelessWidget {
   @override
@@ -12,7 +10,7 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blueGrey[900],
+        //primaryColor: Colors.blueGrey[900],
       ),
       home: RootWidget(),
     );
@@ -28,23 +26,21 @@ class _RootWidgetState extends State<RootWidget> {
   int _selectedIndex = 0;
   final _bottomNavigationBarItems = <BottomNavigationBarItem>[];
   static const _footerIcons = [
-    Icons.home,
     Icons.access_time,
     Icons.star,
-    Icons.build,
+    Icons.home,
   ];
   static const _footerItemNames = [
-    'ホーム',
     'タイムライン',
     'ToDoリスト',
-    '設定',
+    'アカウント',
   ];
   // === 追加部分 ===
   var _routes = [
     Home(),
-    TimeLine(),
     ToDo(),
-    settings(),
+    TimeLine(),
+    //settings(),
   ];
   // ==============
   @override

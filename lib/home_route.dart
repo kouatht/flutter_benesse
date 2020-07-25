@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
-          child: Text('Open route'),
+          child: Text('HELLO'),
           onPressed: () {
             Navigator.push(
               context,

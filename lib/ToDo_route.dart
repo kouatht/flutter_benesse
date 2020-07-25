@@ -4,6 +4,7 @@ class ToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Rapido Demo',
       home: RapidoExample(title: 'Rapido'),
     );
@@ -30,7 +31,7 @@ class _RapidoExampleState extends State<RapidoExample> {
       customItemBuilder: _customBuilder,
       emptyListWidget: Center(
         child: Text(
-          "ボタンを押してタスクを追加",
+          "右下のボタンからやらなければならないことを追加",
           textAlign: TextAlign.center,
         ),
       ),

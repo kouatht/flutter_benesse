@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'timeline_route.dart';
 import 'home_route.dart';
 import 'ToDo_route.dart';
+
 void main() => runApp(App());
+
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,18 +12,20 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //primaryColor: Colors.blueGrey[900],
-      ),
+          //primaryColor: Colors.blueGrey[900],
+          ),
       home: RootWidget(),
     );
   }
 }
+
 class RootWidget extends StatefulWidget {
   RootWidget({Key key}) : super(key: key);
 
   @override
   _RootWidgetState createState() => _RootWidgetState();
 }
+
 class _RootWidgetState extends State<RootWidget> {
   int _selectedIndex = 0;
   final _bottomNavigationBarItems = <BottomNavigationBarItem>[];
@@ -51,6 +55,7 @@ class _RootWidgetState extends State<RootWidget> {
       _bottomNavigationBarItems.add(_UpdateDeactiveState(i));
     }
   }
+
   /// インデックスのアイテムをアクティベートする
   BottomNavigationBarItem _UpdateActiveState(int index) {
     return BottomNavigationBarItem(
@@ -63,9 +68,9 @@ class _RootWidgetState extends State<RootWidget> {
           style: TextStyle(
             color: Colors.black87,
           ),
-        )
-    );
+        ));
   }
+
   // ignore: non_constant_identifier_names
   BottomNavigationBarItem _UpdateDeactiveState(int index) {
     return BottomNavigationBarItem(
@@ -78,9 +83,9 @@ class _RootWidgetState extends State<RootWidget> {
           style: TextStyle(
             color: Colors.black26,
           ),
-        )
-    );
+        ));
   }
+
   void _onItemTapped(int index) {
     setState(() {
       _bottomNavigationBarItems[_selectedIndex] =
@@ -89,6 +94,7 @@ class _RootWidgetState extends State<RootWidget> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

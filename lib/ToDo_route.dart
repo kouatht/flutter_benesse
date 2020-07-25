@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rapido/rapido.dart';
+
 class ToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,12 +11,14 @@ class ToDo extends StatelessWidget {
     );
   }
 }
+
 class RapidoExample extends StatefulWidget {
   RapidoExample({Key key, this.title}) : super(key: key);
   final String title;
   @override
   _RapidoExampleState createState() => _RapidoExampleState();
 }
+
 class _RapidoExampleState extends State<RapidoExample> {
   final DocumentList documentList = DocumentList(
     "task list",
@@ -37,6 +40,7 @@ class _RapidoExampleState extends State<RapidoExample> {
       ),
     );
   }
+
   Widget _customBuilder(int index, Document doc, BuildContext context) {
     return Card(
       child: Row(
@@ -65,6 +69,7 @@ class _RapidoExampleState extends State<RapidoExample> {
       color: _calculateColor(documentList[index]["pri count"]),
     );
   }
+
   Color _calculateColor(int priority) {
     if (priority < 3) {
       return Colors.red;

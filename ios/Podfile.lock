@@ -20,7 +20,7 @@ PODS:
     - Flutter
   - shared_preferences_linux (0.0.1):
     - Flutter
-  - shared_preferences_macOS (0.0.1):
+  - shared_preferences_macos (0.0.1):
     - Flutter
   - shared_preferences_web (0.0.1):
     - Flutter

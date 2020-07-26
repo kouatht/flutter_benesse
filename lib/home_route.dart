@@ -1,54 +1,55 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+var list_name=["There is","１次関数","アジア","助動詞","合同条件","歴史","電流","確率","漢字","接続詞"];
+var sub_name=["2020/7/22","2020/7/15","2020/7/10","2020/7/1","2020/6/22","2020/6/15","2020/5/25","2020/5/22","2020/5/11","2020/5/4"];
+var color_list=[Colors.grey,Colors.blue,Colors.red,Colors.grey,Colors.blue,Colors.lime,Colors.purple,Colors.blue,Colors.green,Colors.grey];
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('タイムライン'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.add_circle_outline,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PickPhoto()),
-                );
-              },
-            ),
-          ],
-        ),
-        body: ListView(
-            children: List.generate(3, (index) {
-          return InkWell(
-            onTap: () {
+      appBar: AppBar(
+        title: Text('タイムライン'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add_circle_outline, color: Colors.white,),
+            onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          MyHomePageDetail("images/$index.jpg")));
+                context,
+                MaterialPageRoute(builder: (context) => PickPhoto()),
+              );
             },
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset("images/$index.jpg"),
-                  Container(
-                      margin: EdgeInsets.all(10.0),
-                      child: ListTile(
-                        title: Text("$index.jpg"),
-                        leading: Icon(Icons.person),
-                        subtitle: Text("サブタイトル"),
-                      )),
-                ],
+          ),
+        ],
+      ),
+      body: Container(
+        width: double.infinity,
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: List.generate(10, (index){
+            return InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/$index.jpg")));
+              },
+              child: Card(
+                color: color_list[index],
+                child: Column(
+                  children: <Widget>[
+                    Image.asset("images/$index.jpg"),
+                    Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: ListTile(
+                          title: Text(list_name[index]),
+                          subtitle: Text(sub_name[index]),
+                        )),
+                  ],
+                ),
               ),
-            ),
-          );
-        })));
+            );
+          }),
+        ),
+      ),
+    );
   }
 }
 
@@ -80,14 +81,12 @@ class _PickPhotoState extends State<PickPhoto> {
           children: <Widget>[
             _image == null
                 ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 100.0, horizontal: 50.0),
-                    child: Text('写真を選択してください'),
-                  )
+              padding: const EdgeInsets.symmetric(vertical: 100.0, horizontal: 50.0),
+              child: Text('写真を選択してください'),
+            )
                 : Image.file(_image),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
               child: TextField(
                 decoration: InputDecoration(
                   labelText: "概要など",
@@ -114,10 +113,10 @@ class _PickPhotoState extends State<PickPhoto> {
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
-
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -127,30 +126,26 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
             children: List.generate(3, (index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          MyHomePageDetail("images/$index.jpg")));
-            },
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset("images/$index.jpg"),
-                  Container(
-                      margin: EdgeInsets.all(10.0),
-                      child: ListTile(
-                        title: Text("$index.jpg"),
-                        leading: Icon(Icons.person),
-                        subtitle: Text("サブタイトル"),
-                      )),
-                ],
-              ),
-            ),
-          );
-        })));
+              return InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/$index.jpg")));
+                },
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset("images/$index.jpg"),
+                      Container(
+                          margin: EdgeInsets.all(10.0),
+                          child: ListTile(
+                            title: Text("$index.jpg"),
+                            leading: Icon(Icons.person),
+                            subtitle: Text("サブタイトル"),
+                          )),
+                    ],
+                  ),
+                ),
+              );
+            })));
   }
 }
 
@@ -158,10 +153,8 @@ class MyHomePageDetail extends StatefulWidget {
   MyHomePageDetail(this._imageName);
   final String _imageName;
   @override
-  _MyHomePageDetailState createState() =>
-      new _MyHomePageDetailState(_imageName);
+  _MyHomePageDetailState createState() => new _MyHomePageDetailState(_imageName);
 }
-
 class _MyHomePageDetailState extends State<MyHomePageDetail> {
   _MyHomePageDetailState(this._imageName);
   final String _imageName;

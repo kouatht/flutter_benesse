@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class MyPage extends StatelessWidget {
+void main() {
+  debugPaintSizeEnabled = false;
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyPage(),
+    ),
+  );
+}
+
+class MyPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _State();
+  }
+}
+
+class _State extends State<MyPage> {
+  var _selectedValue = 'マイページ';
+  var _usStates = ["設定", "投稿", "友達"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,10 +34,22 @@ class MyPage extends StatelessWidget {
         ),
         elevation: 0,
         actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 10),
-            child: Icon(Icons.more_vert),
-          ),
+          PopupMenuButton<String>(
+            initialValue: _selectedValue,
+            onSelected: (String s) {
+              setState(() {
+                _selectedValue = s;
+              });
+            },
+            itemBuilder: (BuildContext context) {
+              return _usStates.map((String s) {
+                return PopupMenuItem(
+                  child: Text(s),
+                  value: s,
+                );
+              }).toList();
+            },
+          )
         ],
       ),
       body: CustomScrollView(

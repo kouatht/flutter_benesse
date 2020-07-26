@@ -6,12 +6,14 @@ var list_name=["There is","１次関数","アジア","助動詞","合同条件",
 var sub_name=["2020/7/22","2020/7/15","2020/7/10","2020/7/1","2020/6/22","2020/6/15","2020/5/25","2020/5/22","2020/5/11","2020/5/4"];
 var color_list=[Colors.grey,Colors.blue,Colors.red,Colors.grey,Colors.blue,Colors.lime,Colors.purple,Colors.blue,Colors.green,Colors.grey];
 
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('タイムライン'),
+        backgroundColor: Colors.pink.shade300,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add_circle_outline, color: Colors.white,),
@@ -28,21 +30,21 @@ class Home extends StatelessWidget {
         width: double.infinity,
         child: GridView.count(
           crossAxisCount: 2,
-          children: List.generate(10, (index){
+          children: List.generate(9, (index){
             return InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/_$index.jpeg")));
               },
               child: Card(
-                color: color_list[index],
+                color: color_list[index+1],
                 child: Column(
                   children: <Widget>[
-                    Image.asset("images/$index.jpg"),
+                    Image.asset("images/${index+1}.jpg"),
                     Container(
                         margin: EdgeInsets.all(10.0),
                         child: ListTile(
-                          title: Text(list_name[index]),
-                          subtitle: Text(sub_name[index]),
+                          title: Text(list_name[index+1]),
+                          subtitle: Text(sub_name[index+1]),
                         )),
                   ],
                 ),

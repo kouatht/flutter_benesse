@@ -26,11 +26,11 @@ class _State extends State<MyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.pink.shade300,
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           'マイページ',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
         ),
         elevation: 0,
         actions: <Widget>[
@@ -64,7 +64,7 @@ class _State extends State<MyPage> {
                       Radius.circular(20),
                     ),
                     child: Image.asset(
-                      "images/カナダと俺.jpeg",
+                      "images/mymelody.jpg",
                       height: 150,
                       width: 100,
                       fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class _State extends State<MyPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text('村中 光一')
+                  Text('マイメロディ')
                 ],
               ),
             ),
@@ -154,7 +154,15 @@ class _State extends State<MyPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   ),
                 ),
-                Image.asset('images/0.jpg'),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(child: Image.asset('images/_0.jpeg')),
+                    Expanded(child: Image.asset('images/_1.jpeg')),
+                  ],
+                ),
               ],
             ),
           ),

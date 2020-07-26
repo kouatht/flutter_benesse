@@ -10,7 +10,10 @@ class Home extends StatelessWidget {
           title: Text('タイムライン'),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.add_circle_outline, color: Colors.white,),
+              icon: Icon(
+                Icons.add_circle_outline,
+                color: Colors.white,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -22,27 +25,30 @@ class Home extends StatelessWidget {
         ),
         body: ListView(
             children: List.generate(3, (index) {
-              return InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/$index.jpg")));
-                },
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset("images/$index.jpg"),
-                      Container(
-                          margin: EdgeInsets.all(10.0),
-                          child: ListTile(
-                            title: Text("$index.jpg"),
-                            leading: Icon(Icons.person),
-                            subtitle: Text("サブタイトル"),
-                          )),
-                    ],
-                  ),
-                ),
-              );
-            }))
-    );
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          MyHomePageDetail("images/$index.jpg")));
+            },
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset("images/$index.jpg"),
+                  Container(
+                      margin: EdgeInsets.all(10.0),
+                      child: ListTile(
+                        title: Text("$index.jpg"),
+                        leading: Icon(Icons.person),
+                        subtitle: Text("サブタイトル"),
+                      )),
+                ],
+              ),
+            ),
+          );
+        })));
   }
 }
 
@@ -74,12 +80,14 @@ class _PickPhotoState extends State<PickPhoto> {
           children: <Widget>[
             _image == null
                 ? Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 100.0, horizontal: 50.0),
-                  child: Text('写真を選択してください'),
-                )
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 100.0, horizontal: 50.0),
+                    child: Text('写真を選択してください'),
+                  )
                 : Image.file(_image),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
               child: TextField(
                 decoration: InputDecoration(
                   labelText: "概要など",
@@ -106,10 +114,10 @@ class _PickPhotoState extends State<PickPhoto> {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -119,26 +127,30 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
             children: List.generate(3, (index) {
-              return InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/$index.jpg")));
-                },
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset("images/$index.jpg"),
-                      Container(
-                          margin: EdgeInsets.all(10.0),
-                          child: ListTile(
-                            title: Text("$index.jpg"),
-                            leading: Icon(Icons.person),
-                            subtitle: Text("サブタイトル"),
-                          )),
-                    ],
-                  ),
-                ),
-              );
-            })));
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          MyHomePageDetail("images/$index.jpg")));
+            },
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset("images/$index.jpg"),
+                  Container(
+                      margin: EdgeInsets.all(10.0),
+                      child: ListTile(
+                        title: Text("$index.jpg"),
+                        leading: Icon(Icons.person),
+                        subtitle: Text("サブタイトル"),
+                      )),
+                ],
+              ),
+            ),
+          );
+        })));
   }
 }
 
@@ -146,8 +158,10 @@ class MyHomePageDetail extends StatefulWidget {
   MyHomePageDetail(this._imageName);
   final String _imageName;
   @override
-  _MyHomePageDetailState createState() => new _MyHomePageDetailState(_imageName);
+  _MyHomePageDetailState createState() =>
+      new _MyHomePageDetailState(_imageName);
 }
+
 class _MyHomePageDetailState extends State<MyHomePageDetail> {
   _MyHomePageDetailState(this._imageName);
   final String _imageName;

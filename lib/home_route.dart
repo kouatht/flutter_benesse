@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 var list_name=["There is","１次関数","アジア","助動詞","合同条件","歴史","電流","確率","漢字","接続詞"];
 var sub_name=["2020/7/22","2020/7/15","2020/7/10","2020/7/1","2020/6/22","2020/6/15","2020/5/25","2020/5/22","2020/5/11","2020/5/4"];
 var color_list=[Colors.grey,Colors.blue,Colors.red,Colors.grey,Colors.blue,Colors.lime,Colors.purple,Colors.blue,Colors.green,Colors.grey];
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class Home extends StatelessWidget {
           children: List.generate(10, (index){
             return InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/$index.jpg")));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/_$index.jpeg")));
               },
               child: Card(
                 color: color_list[index],

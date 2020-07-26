@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-var list_name=["There is","１次関数","アジア","助動詞","合同条件","歴史","電流","確率","漢字","接続詞"];
+var list_name=["世界史","１次関数","アジア","助動詞","合同条件","歴史","電流","確率","漢字","接続詞"];
 var sub_name=["2020/7/22","2020/7/15","2020/7/10","2020/7/1","2020/6/22","2020/6/15","2020/5/25","2020/5/22","2020/5/11","2020/5/4"];
-var color_list=[Colors.grey,Colors.blue,Colors.red,Colors.grey,Colors.blue,Colors.lime,Colors.purple,Colors.blue,Colors.green,Colors.grey];
+var color_list=[Colors.pink.shade200,Colors.pink.shade400,Colors.pink.shade100,Colors.pink.shade300,Colors.yellow.shade200,Colors.yellow.shade400,Colors.yellow.shade600,Colors.lightGreen.shade200,Colors.lightGreen.shade400,Colors.lightGreen.shade600];
 
 
 class Home extends StatelessWidget {
@@ -36,15 +36,15 @@ class Home extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePageDetail("images/_$index.jpeg")));
               },
               child: Card(
-                color: color_list[index+1],
+                color: color_list[index],
                 child: Column(
                   children: <Widget>[
-                    Image.asset("images/${index+1}.jpg"),
+                    Image.asset("images/${index}.jpg"),
                     Container(
-                        margin: EdgeInsets.all(10.0),
+                        margin: EdgeInsets.all(5.0),
                         child: ListTile(
-                          title: Text(list_name[index+1]),
-                          subtitle: Text(sub_name[index+1]),
+                          title: Text(list_name[index]),
+                          subtitle: Text(sub_name[index]),
                         )),
                   ],
                 ),
@@ -74,6 +74,7 @@ class _PickPhotoState extends State<PickPhoto> {
     return Scaffold(
       appBar: AppBar(
         title: Text('投稿画面'),
+        backgroundColor: Colors.pink.shade300,
       ),
       body: Center(
         child: Column(
@@ -120,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text("ホーム"),
+          backgroundColor: Colors.pink.shade300,
         ),
         body: ListView(
             children: List.generate(3, (index) {
@@ -166,6 +168,7 @@ class _MyHomePageDetailState extends State<MyHomePageDetail> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text("投稿の詳細"),
+          backgroundColor: Colors.pink.shade300,
         ),
         body: Center(
           child: Column(

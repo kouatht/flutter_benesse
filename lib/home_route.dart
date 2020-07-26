@@ -52,24 +52,19 @@ class Home extends StatelessWidget {
     );
   }
 }
-
 class PickPhoto extends StatefulWidget {
   @override
   _PickPhotoState createState() => _PickPhotoState();
 }
-
 class _PickPhotoState extends State<PickPhoto> {
   File _image;
   final picker = ImagePicker();
-
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
     setState(() {
       _image = File(pickedFile.path);
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,9 +106,7 @@ class _PickPhotoState extends State<PickPhoto> {
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
@@ -148,7 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
             })));
   }
 }
-
 class MyHomePageDetail extends StatefulWidget {
   MyHomePageDetail(this._imageName);
   final String _imageName;
@@ -158,6 +150,13 @@ class MyHomePageDetail extends StatefulWidget {
 class _MyHomePageDetailState extends State<MyHomePageDetail> {
   _MyHomePageDetailState(this._imageName);
   final String _imageName;
+  final controller = TextEditingController();
+  var _message;
+  @override
+  void initState() {
+    _message = 'コメントを入力';
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -167,16 +166,66 @@ class _MyHomePageDetailState extends State<MyHomePageDetail> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Image.asset(_imageName),
-              Container(
-                child: ListTile(
-                  title: Text(_imageName),
-                  leading: Icon(Icons.person),
-                  subtitle: Text("お写真ですこれは"),
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child:Image.asset(_imageName),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'Flower: 上手にまとめてるよ！！',
+                  style: TextStyle(fontSize:15.0,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"),
                 ),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'KH: これはすごいわ',
+                  style: TextStyle(fontSize:15.0,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  _message,
+                  style: TextStyle(fontSize:15.0,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: TextField(
+                  controller: controller,
+                  style: TextStyle(fontSize:15.0,
+                      color: const Color(0xFFFF0000),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto"),
+                ),
+              ),
+              FlatButton(
+                  padding: EdgeInsets.all(10.0),
+                  color: Colors.lightBlueAccent,
+                  child: Text(
+                    "Send",
+                    style: TextStyle(fontSize:20.0,
+                        color: const Color(0xFF000000),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Roboto"),
+                  ),
+                  onPressed: buttonPressed
+              ),
             ],
           ),
         ));
+  }
+  void buttonPressed(){
+    setState((){
+      _message = 'Light: ' + controller.text;
+    });
   }
 }
